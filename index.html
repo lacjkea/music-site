@@ -9,8 +9,9 @@
   </head>
   <body>
     <div class="preloader"></div>
+    <form action=""></form>
     <main></main>
-    <template>
+    <template class="song">
       <article>
         <h2>{SONGTITLE}</h2>
         <h4>by <span>{ARTIST}</span></h4>
@@ -22,8 +23,17 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
+        <figure>
+          <img src="" onerror="this.src='loader.gif'" alt="" width="200" />
+          <figcaption></figcaption>
+        </figure>
         <ul></ul>
       </article>
+    </template>
+
+    <template class="genre">
+      <input type="checkbox" name="" id="" />
+      <label for=""></label>
     </template>
 
     <!-- <div class="preloader"></div> -->
