@@ -1,3 +1,5 @@
+//https://github.com/lacjkea/music-site
+
 //https://s2021-8556.restdb.io/rest/great-songs?apikey=6034ed655ad3610fb5bb655d
 //https://s2021-8556.restdb.io/rest/great-songs?q={%22artist%22:%22BABYMETAL%22}&apikey=6034ed655ad3610fb5bb655d
 
@@ -50,6 +52,7 @@ function buildFilters(data) {
     const clone = template.cloneNode(true);
     const inputEl = clone.querySelector("input");
     inputEl.name = genre;
+    inputEl.setAttribute("checked", "checked");
     inputEl.id = genre;
     inputEl.addEventListener("change", reLoad);
     const formEl = document.querySelector("form");
@@ -76,8 +79,8 @@ function buildFilters(data) {
         genresCheckedString +
         "]}}";
       console.log(newUrl);
-      mainEl.innerHTML = "";
       document.querySelector(".preloader").classList.remove("hide");
+      mainEl.innerHTML = "";
       getData(newUrl);
     }
 
@@ -96,6 +99,7 @@ function getData(url) {
     .then((data) => {
       //We have the data
       //console.log(data);
+      mainEl.innerHTML = "";
       show(data);
     })
     .catch((e) => {
