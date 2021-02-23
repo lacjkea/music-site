@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  grid-gap: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+/* 
+main article:first-child {
+  background-color: red;
+  grid-column: 1 / -1;
+} */
+
+h2 {
+  margin: 0;
+}
+
+article {
+  position: relative;
+}
+
+.preloader {
+  width: 100px;
+  height: 100px;
+  background: hotpink;
+  border-radius: 50%;
+  position: absolute;
+  animation: scaleanim 2s infinite;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+}
+
+@keyframes scaleanim {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+}
