@@ -4,17 +4,13 @@
 //https://s2021-8556.restdb.io/rest/great-songs?apikey=6034ed655ad3610fb5bb655d
 //https://s2021-8556.restdb.io/rest/great-songs?q={%22artist%22:%22BABYMETAL%22}&apikey=6034ed655ad3610fb5bb655d
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get("product");
-
 const mainEl = document.querySelector("main");
 
 //alert("hey");
 // end point
 const endpointurl = "https://s2021-8556.restdb.io/rest/great-songs?max=20";
 
-const mediaurl = "https://s2021-8556.restdb.io/media/";
+// not working 22A - const mediaurl = "https://s2021-8556.restdb.io/media/";
 
 const options = {
   headers: {
@@ -35,7 +31,7 @@ function getNav() {
     .then((data) => {
       //We have the data
       //console.log(data);
-      buildFilters(data);
+      buildNavWithFilters(data);
     })
     .catch((e) => {
       //Woops, something went wrong
@@ -44,9 +40,9 @@ function getNav() {
   getData(endpointurl);
 }
 
-function buildFilters(data) {
-  console.log("hi");
-  // console.log(data.fields[10].properties.option_list);
+function buildNavWithFilters(data) {
+  console.log("buildNavWithFilters");
+  console.log("genres/option list:", data.fields[10].properties.option_list);
   const genres = data.fields[10].properties.option_list.split(", ");
   genres.forEach((genre) => {
     const template = document.querySelector(".genre").content;
@@ -79,13 +75,11 @@ function buildFilters(data) {
         'https://s2021-8556.restdb.io/rest/great-songs?q={"genres":{"$in":[' +
         genresCheckedString +
         "]}}";
-      console.log(newUrl);
+      console.log("new Endpoint: ", newUrl);
       document.querySelector(".preloader").classList.remove("hide");
       mainEl.innerHTML = "";
       getData(newUrl);
     }
-
-    //
   });
 }
 
@@ -105,22 +99,15 @@ function getData(url) {
     })
     .catch((e) => {
       //Woops, something went wrong
+      document.querySelector("main").innerHTML =
+        "<p>You haven't selected anything. Please select minimum one genre.</p>";
+      document.querySelector(".preloader").classList.add("hide");
       console.error("An error occured:", e.message);
     });
   // document.querySelectorAll("input").forEach((box) => {
   //   box.addEventListener("change", hey);
   // });
 }
-
-// function hey() {
-//   alert("hey");
-// }
-/* async function getData() {
-  const response = await fetch(url, options);
-  const data = await response.json();
-  show(data);
-  //console.log(data);
-} */
 
 function show(data) {
   console.table(data);
@@ -140,16 +127,17 @@ function show(data) {
     clone.querySelector("iframe").src = ytLink;
 
     const img = clone.querySelector("img");
+    // img.src = song.img + "error";
     img.src = song.img;
     img.alt = song.artist;
     clone.querySelector("figcaption").innerHTML =
       "Image attribution: " + song.img_attribution;
 
-    const genres = song.genres;
+    const arrayOfGenres = song.genres;
     //https://www.w3schools.com/jsref/jsref_split.asp
     const ulEl = clone.querySelector("ul");
-    const arrayOfGenres = genres; //genres.split(", ");
-    console.log(arrayOfGenres);
+    // const arrayOfGenres = genres; //genres.split(", ");
+    console.log("arrayOfGenres for " + song.title + ": ", arrayOfGenres);
     arrayOfGenres.forEach((genre) => {
       const liEl = document.createElement("li");
       liEl.textContent = genre;
