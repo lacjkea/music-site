@@ -28,7 +28,11 @@ main {
   margin: 0 auto;
 }
 
-form {
+h1 {
+  grid-column: 1 / -1;
+}
+
+nav ul {
   background: yellowgreen;
   position: sticky;
   top: 0;
@@ -96,7 +100,7 @@ h4 {
 }
 
 @media only screen and (min-width: 700px) {
-  form {
+  nav ul {
     flex-direction: row;
     justify-content: space-between;
   }

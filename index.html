@@ -9,8 +9,12 @@
   </head>
   <body>
     <div class="preloader"></div>
-    <form action=""></form>
-    <main></main>
+    <header>
+      <nav><ul></ul></nav>
+    </header>
+    <main>
+      <h1>{GENRE}</h1>
+    </main>
     <template class="song">
       <article>
         <h2>{SONGTITLE}</h2>
@@ -33,24 +37,10 @@
       </article>
     </template>
 
-    <template class="genre">
-      <div>
-        <input type="checkbox" name="y" id="x" />
-        <label for="x"></label>
-      </div>
+    <template class="nav-item">
+      <li><a href="?genre="></a></li>
     </template>
 
-    <!-- <div class="preloader"></div> -->
-    <!-- preloader gif from https://www.behance.net/gallery/13765711/GIF-Preloaders-(Free-Download) -->
-    <!-- <img src="loader.gif" alt="" width="640" height="480" /> -->
-    <!--     <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/"
-    frameborder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-  ></iframe> -->
     <script src="script.js"></script>
   </body>
 </html>
